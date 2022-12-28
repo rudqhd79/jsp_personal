@@ -1,6 +1,6 @@
 package DTO;
 
-public class Bucket {
+public class Product {
 	private String img_name;
 	private int product_id;
 	private String product_name;

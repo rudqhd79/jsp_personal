@@ -10,6 +10,7 @@
 <body>
 	<header class="home_logo"><a href="main">마켓컬리</a></header>
 	<div>
+		<div><p>선택 페이지 메뉴</p></div>
 		<nav>
 			<ul>
 				<li><a href="shop">쇼핑하기</a></li>
