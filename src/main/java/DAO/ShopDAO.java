@@ -34,14 +34,12 @@ public class ShopDAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
-//		System.out.println("s.executeQuery();) : ");
 			while (rs.next()) {
 				Product img = new Product();
 				img.setImg_name(rs.getString(1));
 				img.setProduct_id(rs.getInt(2));
 				img.setProduct_name(rs.getString(3));
 				img.setProduct_price(rs.getString(4));
-//				System.out.println("rs.next() : " + rs.getString(1));
 				linklist.add(img);
 			}
 			request.setAttribute("linklist", linklist);
@@ -79,17 +77,16 @@ public class ShopDAO {
 		
 		try {
 			Connection conn = open();
-			String sql = "select a.img_name, a.product_name, a.product_price from product a join bucket b on (a.product_id = b.product_id)";
+			String sql = "select a.img_name, a.product_name, a.product_price, a.product_id from product a join bucket b on (a.product_id = b.product_id)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-//			System.out.println("try문");
 			while (rs.next()) {
 				Bucket bucket = new Bucket();
 				bucket.setImg_name(rs.getString(1));
 				bucket.setProduct_name(rs.getString(2));
 				bucket.setProduct_price(rs.getString(3));
+				bucket.setProduct_id(rs.getInt(4));
 				
-//				System.out.println("while문");
 				buckets.add(bucket);
 			}
 			request.setAttribute("buckets", buckets);
@@ -102,8 +99,40 @@ public class ShopDAO {
 		return "bucket.jsp";
 	}
 	
-//	public String insert (HttpServletRequest request, HttpServletResponse response) {
-//		return "";
-//	}
-	
+	public int delete(String[] de_box) {
+		int res = 0;
+		int[] cnt = null;
+		
+		try {
+			Connection conn = open();
+			conn.setAutoCommit(false);
+			PreparedStatement ps = null;
+			String sql = "delete from bucket where product_id = ?";
+			ps = conn.prepareStatement(sql);
+			
+			for (int i = 0; i<de_box.length; i++) {
+				ps.setInt(1, Integer.parseInt(de_box[i]));
+				ps.addBatch();
+				ps.clearParameters();
+			}
+			cnt = ps.executeBatch();
+			
+			for (int i = 0; i<cnt.length; i++) {
+				if (cnt[i]==-2) {
+					res++;
+				}
+			}
+			
+			if (de_box.length==res) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+			conn.close();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return res;
+	}
 }

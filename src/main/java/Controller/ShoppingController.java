@@ -58,18 +58,10 @@ public class ShoppingController extends HttpServlet {
 		case "/bucketinsert":
 			site = dao.infopage(request, response); 
 			break;
-//		case "/insert":
-//			site = dao.insert(request, response);
-//			break;
-//		case "/add":
-//			site = dao.nextCustid(request, response);
-//			try {
-//				System.out.println("dao.link();");
-//				 dao.link();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			break;
+		case "/delete":
+			String[] de_box = request.getParameterValues("chk");
+			dao = new ShopDAO();
+			int res = dao.delete(de_box);
 		}
 		if (site.startsWith("redirect:/")) {
 			String rview = site.substring("redirect:/".length());

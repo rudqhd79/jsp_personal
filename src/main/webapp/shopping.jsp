@@ -31,7 +31,7 @@ link = (ArrayList<Product>) request.getAttribute("linklist");
 				</div>
 				<div>
 					<p><%=i.getProduct_name() %></p>
-					<p><%=i.getProduct_price() %></p>
+					<p><%=i.getProduct_price() %>원</p>
 				</div>
 			</td>
 		</tr>

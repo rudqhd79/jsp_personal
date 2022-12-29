@@ -1,52 +1,31 @@
-function fn_submit() {
-   var fn = document.frm;
-
-   //유효성 체크
-   if (fn.v_jumin.value == "") {   //입력창 custname부분이 null이면
-      alert("주민번호가 입력되지 않았습니다!");
-      fn.v_jumin.focus();   //포커싱
-      return false;   //함수 끝
-   }
-   if (fn.v_name.value == "") {
-      alert("성명이 입력되지 않았습니다!");
-      fn.v_name.focus();   //포커싱
-      return false;   //함수 끝
-   }
-   if (fn.m_no.value == "") {
-      alert("후보번호가 선택되지 않았습니다!");
-      fn.m_no.focus();   //포커싱
-      return false;   //함수 끝
-   }
-   if (fn.v_time.value == "") {
-      alert("투표시간이 입력되지 않았습니다!");
-      fn.v_time.focus();   //포커싱
-      return false;   //함수 끝
-   }
-   if (fn.v_area.value == "") {
-      alert("투표장소가 입력되지 않았습니다!");
-      fn.v_area.focus();   //포커싱
-      return false;   //함수 끝
-   }
-   if (fn.v_confirm.value.value == "N") {
-      alert("유권자확인이 선택되지 않았습니다!");
-      fn.v_confirm.focus();   //포커싱
-      return false;   //함수 끝
-   } 
-   fn.submit();   //
-}
-
-function restart() {
-	alert("다시 작성해주세요.");
-}
-
 function initCheckbox()  {
-  
-  // 초기화할 checkbox 선택
-  const checkboxes 
-       = document.getElementsByName('product');
-  
-  // 체크박스 목록을 순회하며 checked 값을 초기화
-  checkboxes.forEach((checkbox) => {
-    checkbox.checked = false;
+  const checkedboxes 
+       = document.getElementsByName('chk');
+  checkedboxes.forEach((checkedbox) => {
+    checkedbox.checked = false;
   })
+}
+
+function allselect(bool){
+	var chks = document.getElementsByName("chk");
+	for(var i = 0; i < chks.length; i++){
+		chks[i].checked = bool;
+	}
+}
+
+function goToDelete() {
+	var rc = document.myform.chk;
+	flag = false;
+	
+	for(i=0; i<rc.length; i++) {
+		if(rc[i].checked) {
+			flag = true;
+		}
+	}
+	
+	if(flag == false) {
+		alert("하나 이상 선택해주세요");
+		return;
+	}
+	document.myform.submit();
 }
