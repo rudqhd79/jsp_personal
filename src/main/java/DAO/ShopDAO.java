@@ -78,6 +78,8 @@ public class ShopDAO {
 		try {
 			Connection conn = open();
 			String sql = "select a.img_name, a.product_name, a.product_price, a.product_id from product a join bucket b on (a.product_id = b.product_id)";
+//			sql += " from product a join bucket b on (a.product_id = b.product_id)";
+//			sql += " group by a.img_name, a.product_id, a.product_name, a.product_price";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {

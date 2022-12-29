@@ -7,6 +7,7 @@ request.setCharacterEncoding("UTF-8");
 ArrayList<Bucket> buckets = new ArrayList<>();
 buckets = (ArrayList<Bucket>) request.getAttribute("buckets");
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,21 +15,16 @@ buckets = (ArrayList<Bucket>) request.getAttribute("buckets");
 <title>쇼핑페이지</title>
 <link rel="stylesheet" href="style.css">
 <script type="text/javascript" src="script.js">
-	$(function() {
-		$("body").on("click", "button", function() {
-			$(":checkbox").prop("checked", true);
-		})
-	});
 </script>
 </head>
 <body>
-	<form name="myform" action="delete" method="post">
+	<form name="frm" action="delete" method="post">
 		<!-- 이미지는 for문을 통해 반복하여 출력한다 -->
 		<%@ include file="header.jsp"%>
 		<table>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="삭제" />
+					<input type="submit" value="삭제" onclick="checkBoxConf(); return false;" />
 					<input type='button' name='all' value='전체선택' onclick="allselect(this); return false" />
 					<input type='button' name='reset' value='전체취소' onclick="initCheckbox()" />
 				</td>

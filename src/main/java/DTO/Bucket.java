@@ -5,7 +5,7 @@ public class Bucket {
 	private int product_id;
 	private String product_name;
 	private String product_price;
-
+	private String total_price;
 
 	public String getProduct_price() {
 		return product_price;
@@ -39,4 +39,11 @@ public class Bucket {
 		this.product_id = product_id;
 	}
 
+	public String getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(String total_price) {
+		this.total_price = total_price;
+	}
 }
