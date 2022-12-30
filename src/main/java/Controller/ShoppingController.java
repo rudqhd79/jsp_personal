@@ -62,6 +62,12 @@ public class ShoppingController extends HttpServlet {
 			String[] de_box = request.getParameterValues("chk");
 			dao = new ShopDAO();
 			int res = dao.delete(de_box);
+			System.out.println(res + "++++" + de_box);
+			if (res != 0) {
+				site = "bucket";
+			} else {
+				System.out.println("삭제될 데이터 값이 없습니다.");
+			}
 		}
 		if (site.startsWith("redirect:/")) {
 			String rview = site.substring("redirect:/".length());
