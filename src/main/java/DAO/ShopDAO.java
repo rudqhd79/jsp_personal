@@ -78,8 +78,6 @@ public class ShopDAO {
 		try {
 			Connection conn = open();
 			String sql = "select a.img_name, a.product_name, a.product_price, a.product_id from product a join bucket b on (a.product_id = b.product_id)";
-//			sql += " from product a join bucket b on (a.product_id = b.product_id)";
-//			sql += " group by a.img_name, a.product_id, a.product_name, a.product_price";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -89,6 +87,29 @@ public class ShopDAO {
 				bucket.setProduct_price(rs.getString(3));
 				bucket.setProduct_id(rs.getInt(4));
 				
+				buckets.add(bucket);
+			}
+			request.setAttribute("buckets", buckets);
+			conn.close();
+			ps.close();
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "bucket.jsp";
+	}
+	
+	public String totalprice(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Bucket> buckets = new ArrayList<>();
+		
+		try {
+			Connection conn = open();
+			String sql = "select sum(a.product_price) from product a join bucket b on (a.product_id = b.product_id)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Bucket bucket = new Bucket();
+				bucket.setTotal_price(rs.getString(1));
 				buckets.add(bucket);
 			}
 			request.setAttribute("buckets", buckets);

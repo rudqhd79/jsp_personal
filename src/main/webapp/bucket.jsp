@@ -12,7 +12,7 @@ buckets = (ArrayList<Bucket>) request.getAttribute("buckets");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쇼핑페이지</title>
+<title>마켓컬리 - 쇼핑페이지</title>
 <link rel="stylesheet" href="style.css">
 <script type="text/javascript" src="script.js">
 </script>
@@ -21,26 +21,27 @@ buckets = (ArrayList<Bucket>) request.getAttribute("buckets");
 	<form name="frm" action="delete" method="post">
 		<!-- 이미지는 for문을 통해 반복하여 출력한다 -->
 		<%@ include file="header.jsp"%>
-		<table>
+		<div class="top">
+			<h1>장바구니</h1>
+		</div>
+		<table class="bucket_table">
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="삭제" onclick="checkBoxConf(); return false;" />
-					<input type='button' name='all' value='전체선택' onclick="allselect(this); return false" />
-					<input type='button' name='reset' value='전체취소' onclick="initCheckbox()" />
+					<input type="submit" value="삭제" onclick="checkBoxConf(); return false;" class="bucket_top_bt" />
+					<input type='button' name='all' value='전체선택' onclick="allselect(this); return false" class="bucket_top_bt" />
+					<input type='button' name='reset' value='전체취소' onclick="initCheckbox()" class="bucket_top_bt" />
 				</td>
 			</tr>
 			<%
 			for (Bucket b : buckets) {
 			%>
-			<tr>
-				<td rowspan="2"><input type="checkbox" name="chk" value="<%=b.getProduct_id()%>">
-					<div class="images">
+			<tr class="bucket_list">
+				<td rowspan="2"  class="colunm_bucket"><input type="checkbox" name="chk" value="<%=b.getProduct_id()%>"  class="bucket_chk_bt">
+					<div class="images_bucket">
 						<img src="<%=b.getImg_name()%>" width="200" height="250" />
 					</div>
 				</td>
-			</tr>
-			<tr>
-				<td><%=b.getProduct_name()%> <br /> <%=b.getProduct_price()%>원</td>
+				<td class="bucket_name_price"><%=b.getProduct_name()%> <br /> <%=b.getProduct_price()%>원</td>
 			</tr>
 			<%
 			}

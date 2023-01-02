@@ -56,15 +56,15 @@ public class ShoppingController extends HttpServlet {
 			site = dao.bucketlist(request, response);
 			break;
 		case "/bucketinsert":
-			site = dao.infopage(request, response); 
+			site = dao.infopage(request, response);
 			break;
 		case "/delete":
 			String[] de_box = request.getParameterValues("chk");
 			dao = new ShopDAO();
 			int res = dao.delete(de_box);
 			System.out.println(res + "++++" + de_box);
-			if (res != 0) {
-				site = "bucket";
+			if (res == 1) {
+				site = "/bucket";
 			} else {
 				System.out.println("삭제될 데이터 값이 없습니다.");
 			}

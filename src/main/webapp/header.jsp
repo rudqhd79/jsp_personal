@@ -8,14 +8,11 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<header class="home_logo"><a href="main">마켓컬리</a></header>
-	<div>
-		<nav>
-			<ul>
-				<li><a href="shop">쇼핑하기</a></li>
-				<li><a href="bucket">장바구니/수정</a></li>
-			</ul>
-		</nav>
-	</div>
+	<header>
+		<a href="main" ><img src="../img/capture.png" alt="로고" class="bt"/></a>
+		<input type="text" placeholder="검색어를 입력해주세요." class="header_input" />
+        <a href="shop" class="bt">쇼핑하기</a>
+		<a href="bucket" class="bt">장바구니/수정</a>
+	</header>
 </body>
 </html>

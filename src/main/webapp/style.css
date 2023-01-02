@@ -4,3 +4,123 @@
 	margin: 0;
 	padding: 0;
 }
+
+body {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+header {
+	display: flex;
+	justify-content: space-evenly;
+	align-content: center;
+	height: 50px;
+	line-height: 50px;
+}
+
+.bt {
+	font-size: 1.3em;
+	padding: 5px;
+}
+
+.header_input {
+	width: 250px;
+	height: 50px;
+	line-height: 50px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.top {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	text-align: center;
+}
+
+.images_shop {
+	display: flex;
+	padding: 0 10px;
+	justify-content: space-between;
+	width: 100%;
+	overflow: auto;
+}
+
+.images_bucket {
+	display: flex;
+	padding: 0 10px;
+	justify-content: space-between;
+	width: 100%;
+	overflow: auto;
+}
+
+.images_bucket>img {
+	margin-left: 15px;
+}
+
+.input_page {
+	display: flex;
+}
+
+.shoplist {
+	width: 1000px;
+	overflow: hidden;
+}
+
+.shop_list>tbody {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.bucekt_list>tbody {
+	overflow:hidden;
+}
+
+.colunm_bucket {
+	display: inline-block;
+	flex-wrap: wrap;
+}
+
+.image {
+	margin-left: 100px;
+	text-align: center;
+	width: calc(1000px/ 3);
+	height: 100%;
+	text-align: center;
+}
+
+.shop_name_price {
+	margin-left: 120px;
+	text-align: center;
+}
+
+.bucket_name_price {
+	text-align: left;
+	width: 500px;;
+	font-size: 1.1em;
+}
+
+.bucket_list {
+	text-align: left;
+	margin-left: 10px;
+}
+
+.bucket_list>td {
+	margin : 10px 0;
+}
+
+.bucket_top_bt {
+	font-size : 1.2em;
+}
+
+.bucket_chk_bt {
+	margin-left : 105px;
+	width : 40px;
+	height: 40px; 
+}
