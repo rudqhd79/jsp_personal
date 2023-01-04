@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
@@ -44,30 +45,41 @@ public class ShoppingController extends HttpServlet {
 	protected void doPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String context = request.getContextPath();
 		String command = request.getServletPath();
-		String site = "/main.jsp";
+		String site = "/shop";
 		
 		switch (command) {
-		case "/main.jsp" :
-			site = "main";
 		case "/shop":
 			site = dao.shoppinglist(request, response);
 			break;
 		case "/bucket":
 			site = dao.bucketlist(request, response);
+					  dao.totalprice(request, response);
 			break;
 		case "/bucketinsert":
 			site = dao.infopage(request, response);
+			break;
+		case "/join":
+			int result = dao.join(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			if(result == 1) {
+				out.println("<script>");
+				out.println(" alert('회원가입을 축하합니다!'); location.href='" + context + "';");
+				out.println("</script>");
+				out.flush();
+			} else {
+				out.println("<script>");
+				out.println(" alert('회원가입실패!'); location.href='" + context + "';");
+				out.println("</script>");
+				out.flush();
+			}
 			break;
 		case "/delete":
 			String[] de_box = request.getParameterValues("chk");
 			dao = new ShopDAO();
 			int res = dao.delete(de_box);
-			System.out.println(res + "++++" + de_box);
-			if (res == 1) {
-				site = "/bucket";
-			} else {
-				System.out.println("삭제될 데이터 값이 없습니다.");
-			}
+			System.out.println(de_box + "++++ 장바구니 삭제 품목은:  " + res + "개");
 		}
 		if (site.startsWith("redirect:/")) {
 			String rview = site.substring("redirect:/".length());

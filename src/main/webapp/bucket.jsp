@@ -6,13 +6,14 @@
 request.setCharacterEncoding("UTF-8");
 ArrayList<Bucket> buckets = new ArrayList<>();
 buckets = (ArrayList<Bucket>) request.getAttribute("buckets");
+Integer total = (Integer) (request.getAttribute("total"));
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마켓컬리 - 쇼핑페이지</title>
+<title>마켓컬리 - 장바구니 페이지</title>
 <link rel="stylesheet" href="style.css">
 <script type="text/javascript" src="script.js">
 </script>
@@ -30,6 +31,7 @@ buckets = (ArrayList<Bucket>) request.getAttribute("buckets");
 					<input type="submit" value="삭제" onclick="checkBoxConf(); return false;" class="bucket_top_bt" />
 					<input type='button' name='all' value='전체선택' onclick="allselect(this); return false" class="bucket_top_bt" />
 					<input type='button' name='reset' value='전체취소' onclick="initCheckbox()" class="bucket_top_bt" />
+					<div class="total_price">총 금액 :  <%=total%>원</div>
 				</td>
 			</tr>
 			<%

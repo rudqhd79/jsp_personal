@@ -11,7 +11,7 @@ link = (ArrayList<Product>) request.getAttribute("linklist");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쇼핑페이지</title>
+<title>마켓컬리 - 쇼핑 페이지</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>

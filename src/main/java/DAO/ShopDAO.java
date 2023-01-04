@@ -100,19 +100,15 @@ public class ShopDAO {
 	}
 	
 	public String totalprice(HttpServletRequest request, HttpServletResponse response) {
-		ArrayList<Bucket> buckets = new ArrayList<>();
-		
 		try {
 			Connection conn = open();
 			String sql = "select sum(a.product_price) from product a join bucket b on (a.product_id = b.product_id)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				Bucket bucket = new Bucket();
-				bucket.setTotal_price(rs.getString(1));
-				buckets.add(bucket);
+			
+			if (rs.next()) {
+				request.setAttribute("total", rs.getInt(1));
 			}
-			request.setAttribute("buckets", buckets);
 			conn.close();
 			ps.close();
 			rs.close();
@@ -157,5 +153,38 @@ public class ShopDAO {
 			e.printStackTrace();
 		} 
 		return res;
+	}
+	
+	public int join (HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		String name = request.getParameter("name");
+		String phone1 = request.getParameter("phone1");
+		String phone2 = request.getParameter("phone2");
+		String phone3 = request.getParameter("phone3");
+		String gender = request.getParameter("gender");
+		int result = 0;
+		try{
+			Connection conn = open();
+			String sql = "insert into member values(?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			ps.setString(2, pw);
+			ps.setString(3, name);
+			ps.setString(4, phone1);
+			ps.setString(5, phone2);
+			ps.setString(6, phone3);
+			ps.setString(7, gender);
+			
+			result = ps.executeUpdate();
+			
+			conn.close();
+			ps.close();
+		} catch(Exception e){
+			e.printStackTrace();
+		} 
+		
+		return result;
 	}
 }
