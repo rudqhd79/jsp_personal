@@ -1,5 +1,6 @@
 package DAO;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DTO.Bucket;
 import DTO.Product;
@@ -53,7 +55,6 @@ public class ShopDAO {
 	}
 	
 	public String infopage(HttpServletRequest request, HttpServletResponse response) {
-		ArrayList<Product> linklist = new ArrayList<>();
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 
 		try {
@@ -184,7 +185,48 @@ public class ShopDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} 
-		
 		return result;
+	}
+	
+	public String modify(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Product> products = new ArrayList<>();
+		
+		try {
+			Connection conn = open();
+			String sql = "select img_name, product_name, product_price, product_id from product";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Product product = new Product();
+				product.setImg_name(rs.getString(1));
+				product.setProduct_name(rs.getString(2));
+				product.setProduct_price(rs.getString(3));
+				product.setProduct_id(rs.getInt(4));
+				
+				products.add(product);
+			}
+			request.setAttribute("products", products);
+			conn.close();
+			ps.close();
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "modify.jsp";
+	}
+	
+	public String update(HttpServletRequest request, HttpServletResponse response) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			Connection conn = open();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return JDBC_DRIVER;
 	}
 }

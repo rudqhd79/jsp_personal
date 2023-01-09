@@ -28,8 +28,9 @@ link = (ArrayList<Product>) request.getAttribute("linklist");
 			<td>
 				<div class="images_shop">
 					<!-- 추가하시겠습니까?? alert 띄우기 -->
-					<a href="bucketinsert?product_id=<%=i.getProduct_id()%>" class="image">
-					<img src="<%=i.getImg_name()%>" width="200" height="250" />
+					<a href="bucketinsert?product_id=<%=i.getProduct_id()%>"
+						class="image"> <img src="<%=i.getImg_name()%>" width="200"
+						height="250" />
 					</a>
 				</div>
 				<div class="shop_name_price">
