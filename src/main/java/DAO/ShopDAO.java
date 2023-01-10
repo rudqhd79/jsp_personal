@@ -156,39 +156,7 @@ public class ShopDAO {
 		return res;
 	}
 	
-	public int join (HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String phone1 = request.getParameter("phone1");
-		String phone2 = request.getParameter("phone2");
-		String phone3 = request.getParameter("phone3");
-		String gender = request.getParameter("gender");
-		int result = 0;
-		try{
-			Connection conn = open();
-			String sql = "insert into member values(?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			
-			ps.setString(1, id);
-			ps.setString(2, pw);
-			ps.setString(3, name);
-			ps.setString(4, phone1);
-			ps.setString(5, phone2);
-			ps.setString(6, phone3);
-			ps.setString(7, gender);
-			
-			result = ps.executeUpdate();
-			
-			conn.close();
-			ps.close();
-		} catch(Exception e){
-			e.printStackTrace();
-		} 
-		return result;
-	}
-	
-	public String modify(HttpServletRequest request, HttpServletResponse response) {
+	public String manager(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<Product> products = new ArrayList<>();
 		
 		try {
@@ -213,20 +181,75 @@ public class ShopDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "modify.jsp";
+		return "manager.jsp";
 	}
 	
-	public String update(HttpServletRequest request, HttpServletResponse response) {
+	public String info(HttpServletRequest request, HttpServletResponse response) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		try {
+			Connection conn = open();
+			// 수정한 회원 정보를 가져옴
+			int product_id = Integer.parseInt(request.getParameter("product_id"));
+
+			String sql = "select img_name, product_id, product_name, product_price";
+			sql += " from product where product_id = " + product_id;
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			Product product = new Product();
+
+			if(rs.next()) {
+				product.setImg_name(rs.getString(1));
+				product.setProduct_id(rs.getInt(2));
+				product.setProduct_name(rs.getString(3));
+				product.setProduct_price(rs.getString(4));
+			}
+			request.setAttribute("product", product);
+			request.setAttribute("product_id", product_id);
+
+			conn.close();
+			rs.close();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "info.jsp";
+	}
+	
+	public int update(HttpServletRequest request, HttpServletResponse response) {
+		PreparedStatement ps = null;
+		
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
+		String product_name = request.getParameter("product_name");
+		String product_price = request.getParameter("product_price");
+		String img_name = request.getParameter("img_name");
+		int result = 0;
 		
 		try {
 			Connection conn = open();
+			String sql = "update product set";
+			sql += " product_id = ?,";
+			sql += " product_name = ?,";
+			sql += " product_price = ?,";
+			sql += " img_name = ?";
+			sql += " where product_id = ?";
 			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, product_id);
+			ps.setString(2, product_name);
+			ps.setString(3, product_price);
+			ps.setString(4, img_name);
+			
+			result = ps.executeUpdate();
+			
+			conn.close();
+			ps.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return JDBC_DRIVER;
+		return result;
 	}
+
 }

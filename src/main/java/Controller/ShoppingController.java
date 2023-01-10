@@ -62,27 +62,27 @@ public class ShoppingController extends HttpServlet {
 			site = dao.infopage(request, response);
 			break;
 
-		case"/modify":
-			site = dao.modify(request, response);
+		case "/manager":
+			site = dao.manager(request, response);
+			break;
+
+		case "/info":
+			site = dao.info(request, response);
 			break;
 			
-		case"/update":
-			site = dao.update(request, response);
-			break;
-			
-		case "/join":
-			int result = dao.join(request, response);
+		case "/update":
+			int result1 = dao.update(request, response);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-
-			if (result == 1) {
+			
+			if(result1 == 1) {
 				out.println("<script>");
-				out.println(" alert('회원가입을 축하합니다!'); location.href='" + context + "';");
+				out.println(" alert('물품정보 수정이 완료 되었습니다!'); location.href='" + context + "';");
 				out.println("</script>");
 				out.flush();
 			} else {
 				out.println("<script>");
-				out.println(" alert('회원가입실패!'); location.href='" + context + "';");
+				out.println(" alert('수정실패!'); location.href='" + context + "';");
 				out.println("</script>");
 				out.flush();
 			}
@@ -98,6 +98,7 @@ public class ShoppingController extends HttpServlet {
 			String rview = site.substring("redirect:/".length());
 			System.out.println(rview);
 			response.sendRedirect(rview);
+			return;
 		}
 		ctx.getRequestDispatcher("/" + site).forward(request, response);
 	}

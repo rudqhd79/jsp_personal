@@ -1,6 +1,5 @@
 function initCheckbox() {
-	const checkedboxes
-		= document.getElementsByName('chk');
+	const checkedboxes = document.getElementsByName('chk');
 	checkedboxes.forEach((checkedbox) => {
 		checkedbox.checked = false;
 	})
@@ -31,35 +30,5 @@ function checkBoxConf() {
 		return false;
 	}
 	fn.submit();
-}
-
-function join() {
-	var f = document.join_form; //from 태그
-
-	if (f.id.value == "") {
-		alert("아이디를 입력해주십시오.");
-		return false;
-	}
-	if (f.pw.value == "") {
-		alert("비밀번호를 입력해주십시오.");
-		return false;
-	}
-	if (f.name.value == "") {
-		alert("이름을 입력해주십시오.");
-		return false;
-	}
-	if (f.phone1.value == "") {
-		alert("번호를 입력해주십시오.");
-		return false;
-	}
-	if (f.phone2.value == "") {
-		alert("번호를 입력해주십시오.");
-		return false;
-	}
-	if (f.phone3.value == "") {
-		alert("번호를 입력해주십시오.");
-		return false;
-	}
-	f.submit();
 }
 
