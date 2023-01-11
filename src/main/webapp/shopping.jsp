@@ -18,7 +18,7 @@ link = (ArrayList<Product>) request.getAttribute("linklist");
 	<!-- 이미지는 for문을 통해 반복하여 출력한다 -->
 	<%@ include file="header.jsp"%>
 	<div class="top">
-		<h1>쇼핑하기</h1>
+		<h2>쇼핑하기</h2>
 	</div>
 	<table class="shop_list">
 		<%

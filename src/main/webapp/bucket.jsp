@@ -23,7 +23,7 @@ Integer total = (Integer) (request.getAttribute("total"));
 		<!-- 이미지는 for문을 통해 반복하여 출력한다 -->
 		<%@ include file="header.jsp"%>
 		<div class="top">
-			<h1>장바구니</h1>
+			<h2>장바구니</h2>
 		</div>
 		<table class="bucket_table">
 			<tr>

@@ -32,3 +32,29 @@ function checkBoxConf() {
 	fn.submit();
 }
 
+function fn_submit() {
+   var fn = document.frm;
+
+   //유효성 체크
+   if (fn.p_id.value == "") {   //입력창 custname부분이 null이면
+      alert("상품코드명이 입력되지 않았습니다.");
+      fn.cstname.focus();   //포커싱
+      return false;   //함수 끝
+   }
+   if (fn.p_name.value == "") {
+      alert("상품명이 입력되지 않았습니다.");
+      fn.phone.focus();   //포커싱
+      return false;   //함수 끝
+   }
+   if (fn.p_price.value == "") {
+      alert("상품가격이 입력되지 않았습니다.");
+      fn.address.focus();   //포커싱
+      return false;   //함수 끝
+   }
+   if (fn.img_name.value == "") {
+      alert("상품이미지가 입력되지 않았습니다.");
+      fn.joindate.focus();   //포커싱
+      return false;   //함수 끝
+   }
+   fn.submit();
+}

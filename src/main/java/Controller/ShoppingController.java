@@ -84,6 +84,7 @@ public class ShoppingController extends HttpServlet {
 				out.println("<script>");
 				out.println(" alert('수정실패!'); location.href='" + context + "';");
 				out.println("</script>");
+				
 				out.flush();
 			}
 			break;

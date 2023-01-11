@@ -220,26 +220,25 @@ public class ShopDAO {
 	public int update(HttpServletRequest request, HttpServletResponse response) {
 		PreparedStatement ps = null;
 		
-		int product_id = Integer.parseInt(request.getParameter("product_id"));
-		String product_name = request.getParameter("product_name");
-		String product_price = request.getParameter("product_price");
+		int product_id = Integer.parseInt(request.getParameter("p_id"));
+		String product_name = request.getParameter("p_name");
+		String product_price = request.getParameter("p_price");
 		String img_name = request.getParameter("img_name");
 		int result = 0;
 		
 		try {
 			Connection conn = open();
 			String sql = "update product set";
-			sql += " product_id = ?,";
 			sql += " product_name = ?,";
 			sql += " product_price = ?,";
 			sql += " img_name = ?";
 			sql += " where product_id = ?";
 			
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, product_id);
-			ps.setString(2, product_name);
-			ps.setString(3, product_price);
-			ps.setString(4, img_name);
+			ps.setString(1, product_name);
+			ps.setString(2, product_price);
+			ps.setString(3, img_name);
+			ps.setInt(4, product_id);
 			
 			result = ps.executeUpdate();
 			

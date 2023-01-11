@@ -17,7 +17,7 @@ p = (Product) request.getAttribute("product");
 <body>
 	<%@ include file="header.jsp"%>
 		<div class="top">
-			<h1>상품수정</h1>
+			<h2>상품수정</h2>
 		</div>
 	<section>
 		<form name="frm" action="update">
@@ -41,7 +41,7 @@ p = (Product) request.getAttribute("product");
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button class="btn" type="submit" onclick="fn_submit(); return false;">수정하기</button> 
+							<button type="submit" onclick="fn_submit(); return false;">수정하기</button> 
 						</td>
 					</tr>
 				</table>

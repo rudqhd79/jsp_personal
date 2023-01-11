@@ -12,11 +12,12 @@ products = (ArrayList<Product>) request.getAttribute("products");
 <head>
 <meta charset="UTF-8">
 <title>마켓컬리 - 관리자페이지</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="top">
-		<h1>관리자페이지</h1>
+		<h2>관리자페이지</h2>
 	</div>
 	<form>
 		<table>
@@ -27,7 +28,7 @@ products = (ArrayList<Product>) request.getAttribute("products");
 				<th><%=p.getProduct_name()%></th>
 			</tr>
 			<tr>
-				<th><%=p.getProduct_price()%></th>
+				<th><%=p.getProduct_price()%>원</th>
 			</tr>
 			<tr>
 				<th><a href="info?product_id=<%=p.getProduct_id()%>">상품코드 : <%=p.getProduct_id()%> (수정하기)</a></th>
