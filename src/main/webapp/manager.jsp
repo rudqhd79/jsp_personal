@@ -20,22 +20,23 @@ products = (ArrayList<Product>) request.getAttribute("products");
 		<h2>관리자페이지</h2>
 	</div>
 	<form>
-		<table>
+		<table class="manager_table">
 			<tr>
+				<th class="manager_table_title">상품 이름</th>
+				<th class="manager_table_title">상품 가격</th>
+				<th class="manager_table_title">상품 코드</th>
+			</tr>
 				<%
 				for (Product p : products) {
 				%>
-				<th><%=p.getProduct_name()%></th>
-			</tr>
 			<tr>
-				<th><%=p.getProduct_price()%>원</th>
+				<th class="manager_th_info"><%=p.getProduct_name()%></th>
+				<th class="manager_th_info"><%=p.getProduct_price()%>원</th>
+				<th class="manager_th_info"><a href="info?product_id=<%=p.getProduct_id()%>">상품코드 : <%=p.getProduct_id()%> (수정하기)</a></th>
 			</tr>
-			<tr>
-				<th><a href="info?product_id=<%=p.getProduct_id()%>">상품코드 : <%=p.getProduct_id()%> (수정하기)</a></th>
 				<%
 				}
 				%>
-			</tr>
 		</table>
 	</form>
 </body>

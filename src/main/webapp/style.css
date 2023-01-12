@@ -129,3 +129,54 @@ a {
 	font-size : 1.2em;
 	margin : 20px 0;
 }
+
+.manager_table {
+	width : 1000px;
+	display: flex;
+	font-size : 1.1em;
+	line-height: 40px;
+	border-bottom: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.manager_th_info {
+	border-top: 1px solid black;
+	text-align: center;
+	width: calc(1000px / 2);
+	height: calc(1000px / 11);
+}
+
+.info_table {
+	width : 1000px;
+	display : flex;
+	justify-content:center;
+	text-align: center;
+	font-size : 1.3em;
+	border-bottom: 1px solid black;
+	border-collapse: collapse;
+}
+
+.info_table tr {
+	height: calc(1000px / 11);
+}
+
+.edit_bt {
+	display: inline-block;
+	justify-content: center;
+}
+
+.info_table_title {
+	display : flex;
+	justify-content:space-between;
+	text-align: center;
+	padding-right: 20px;
+	line-height: calc(1000px / 11);
+}
+
+.info_table_input {
+	display: grid;
+	width: 500px;
+	line-height: 50px;
+}
+

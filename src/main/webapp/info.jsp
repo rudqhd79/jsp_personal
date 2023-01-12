@@ -22,26 +22,26 @@ p = (Product) request.getAttribute("product");
 	<section>
 		<form name="frm" action="update">
 			<div>
-				<table>
+				<table class="info_table">
 					<tr>
-						<th>상품 코드명</th>
-						<td><input type="text" name="p_id" value="<%=p.getProduct_id()%>" readonly></td>
+						<th class="info_table_title">상품 코드명</th>
+						<td><input type="text" name="p_id" value="<%=p.getProduct_id()%>" class="info_table_input"></td>
 					</tr>
 					<tr>
-						<th>상품명</th>
-						<td><input type="text" name="p_name" value="<%=p.getProduct_name()%>"></td>
+						<th class="info_table_title">상품명</th>
+						<td><input type="text" name="p_name" value="<%=p.getProduct_name()%>" class="info_table_input"></td>
 					</tr>
 					<tr>
-						<th>상품가격</th>
-						<td><input type="text" name="p_price" value="<%=p.getProduct_price()%>"></td>
+						<th class="info_table_title">상품가격</th>
+						<td><input type="text" name="p_price" value="<%=p.getProduct_price()%>" class="info_table_input"></td>
 					</tr>
 					<tr>
-						<th>상품이미지</th>
-						<td><input type="text" name="img_name" value="<%=p.getImg_name()%>"></td>
+						<th class="info_table_title">상품이미지</th>
+						<td><input type="text" name="img_name" value="<%=p.getImg_name()%>" class="info_table_input"></td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button type="submit" onclick="fn_submit(); return false;">수정하기</button> 
+							<button type="submit" onclick="fn_submit(); return false;" class="edit_bt">수정하기</button> 
 						</td>
 					</tr>
 				</table>
